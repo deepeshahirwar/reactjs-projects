@@ -74,13 +74,15 @@ function ContactForm(){
           <button
             type="submit" 
             value="send"
-            className='border mt-10 bg-white text-black w-[30rem] h-[2rem] font-bold rounded-md'
+            className='border mt-10 bg-white text-black w-[30rem] 
+            h-[2rem] font-bold rounded-md'
           >
             Submit
           </button>
         </form>
 
-        <div className="UserData text-white ml-10 mt-5 bg-slate-700 w-96 px-3 py-2 
+        <div className="UserData text-white ml-10 mt-5 
+        bg-slate-700 w-96 px-3 py-2 
         border-solid border-2 border-sky-500  rounded-md "> 
         <p>{name}</p> 
         <p>{email}</p> 
