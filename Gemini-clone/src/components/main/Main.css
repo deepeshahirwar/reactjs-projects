@@ -127,7 +127,37 @@
   margin: 15px auto ;
   text-align: center;
   font-weight: 300;
+} 
+
+.result{
+  padding: 0px 5%;
+    max-height: 70vh;
+    overflow: scroll;  
+    background-color: #f0f4f9; 
+    border-radius: 20px;
+} 
+.result::-webkit-scrollbar{
+    display: none;
+} 
+ 
+
+.result-title{ 
+    margin: 40px 0px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
+} 
+.result img{
+    width: 40px; 
+    border-radius: 50%;
 }
+.result-data{
+  display: flex;
+  align-items: start;
+  gap: 20px;
+}
+
 
 
 
