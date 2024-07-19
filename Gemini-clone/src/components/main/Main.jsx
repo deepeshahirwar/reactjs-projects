@@ -87,9 +87,9 @@ export const Main = () => {
              <div> 
               <img src={assets.gallery_icon} alt="" />
               <img src={assets.mic_icon} alt="" />
-              <img  
+               {input? <img  
               onClick={() => onSend()}
-              src={assets.send_icon} alt="" />
+              src={assets.send_icon} alt="" /> : null}
              </div>
           </div>  
            
