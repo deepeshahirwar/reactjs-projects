@@ -34,12 +34,22 @@ const ContextProvider = (props) => {
 
     const onSend = async (prompt) => {
         setResultData("");
-        setShowResult(true);
-        setLoading(true);
+        setShowResult(true); 
+        setLoading(true); 
+     
+        //  for retreving the data from recent tab
+        let response;
+        if(prompt !== undefined) { 
+          response = await run(prompt); 
+          setRecentPrompt(prompt);
+        } else {  
+            setPrevPrompts(prev => [...prev, input]); 
+            setRecentPrompt(input); 
+            response = await run(input);
+        }
 
-        setRecentPrompt(input);
 
-        const response = await run(input);
+       
         const formattedResponse = formatResponse(response);
 
         // Split by <br> to process text in chunks
