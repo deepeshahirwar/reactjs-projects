@@ -26,38 +26,36 @@ const ContextProvider = (props) => {
         return DOMPurify.sanitize(formatted);
     };
 
-    const deleyPara = (index, nextWord) => {
-        setTimeout(() => {
-            setResultData(prev => prev + nextWord);
-        }, 75 * index);
-    }
+    const deleyPara = (text) => {
+        let index = -1;
+        setResultData(""); // Reset result data
+        const interval = setInterval(() => {
+            if (index < text.length) {
+                setResultData(prev => prev + text[index]);
+                index++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 1); // Adjust delay as needed (50ms for example)
+    };
 
     const onSend = async (prompt) => {
-        setResultData("");
         setShowResult(true); 
         setLoading(true); 
-     
-        //  for retreving the data from recent tab
+        
+        // For retrieving the data from recent tab
         let response;
-        if(prompt !== undefined) { 
-          response = await run(prompt); 
-          setRecentPrompt(prompt);
+        if (prompt !== undefined) { 
+            response = await run(prompt); 
+            setRecentPrompt(prompt);
         } else {  
             setPrevPrompts(prev => [...prev, input]); 
             setRecentPrompt(input); 
             response = await run(input);
         }
 
-
-       
         const formattedResponse = formatResponse(response);
-
-        // Split by <br> to process text in chunks
-        const chunks = formattedResponse.split("<br>");
-        for (let i = 0; i < chunks.length; i++) {
-            const nextWord = chunks[i];
-            deleyPara(i, nextWord + "<br>"); // Add <br> to maintain line breaks
-        }
+        deleyPara(formattedResponse);
 
         setLoading(false);
         setInput("");
